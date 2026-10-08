@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>商品详情 · 智选云 AI</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/data.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ai.js"></script>
+<script src="assets/js/ui.js"></script>
+</head>
+<body>
+
+<div id="header-root"></div>
+<script>AIECP.UI.renderHeader('products');</script>
+
+<div class="container">
+  <div id="crumbBox"></div>
+
+  <div class="detail-top">
+    <!-- ==================== 商品图 ==================== -->
+    <div class="gallery">
+      <div class="gallery-main"><img id="mainImg" src="" alt=""></div>
+      <div class="gallery-thumbs" id="thumbs"></div>
+    </div>
+
+    <!-- ==================== 商品信息 ==================== -->
+    <div class="d-info">
+      <h1 class="d-title" id="dTitle"></h1>
+      <div class="d-sub" id="dSub"></div>
+      <div class="d-meta-row" id="dMeta"></div>
+
+      <div class="d-price-box">
+        <div class="dp-main">
+          <span class="price" id="dPrice"></span>
+          <del id="dMarket"></del>
+          <span class="tag tag-price" id="dDiscount"></span>
+        </div>
+        <div class="dp-row">
+          <span>已售 <b id="dSales"></b></span>
+          <span>★ <b id="dRating"></b> 分（<span id="dReviews"></span> 条评价）</span>
+          <span id="dStock"></span>
+        </div>
+      </div>
+
+      <div id="skuArea"></div>
+
+      <div class="row center gap12 mt16 wrap">
+        <span class="text-2">数量</span>
+        <div class="qty-box">
+          <button onclick="AIECP.Pages.detail.stepQty(-1)">−</button>
+          <input type="text" id="qtyInput" value="1" onchange="AIECP.Pages.detail.setQty(this.value)">
+          <button onclick="AIECP.Pages.detail.stepQty(1)">＋</button>
+        </div>
+        <span class="small text-3" id="qtyHint"></span>
+      </div>
+
+      <div class="d-actions">
+        <button class="btn btn-lg btn-primary" onclick="AIECP.Pages.detail.addCart()">加入购物车</button>
+        <button class="btn btn-lg btn-danger" onclick="AIECP.Pages.detail.buyNow()">立即购买</button>
+        <button class="btn btn-lg" onclick="AIECP.Pages.detail.toggleFav()" id="favBtn">☆ 收藏</button>
+      </div>
+
+      <div class="d-services">
+        <span>7 天无理由退换</span>
+        <span>全场包邮</span>
+        <span>正品保障</span>
+        <span>电子发票</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== AI 智能组货 ==================== -->
+  <section class="section" id="bundleSection">
+    <div class="ai-panel">
+      <div class="ai-panel-head">
+        <div class="aph-icon">🧩</div>
+        <div>
+          <h3>智能组货 · 成套搭配方案</h3>
+          <div class="aph-sub" id="bundleSub">大模型生成搭配理由，库存 / 履约 / 价格 / 毛利由业务服务校验</div>
+        </div>
+        <div class="aph-right" id="bundleTrace"></div>
+      </div>
+      <div class="ai-panel-body" id="bundleBody"></div>
+    </div>
+  </section>
+
+  <!-- ==================== 详情与参数 ==================== -->
+  <div class="detail-bottom">
+    <div>
+      <div class="card">
+        <div class="tabs">
+          <div class="tab active" data-tab="detail">商品详情</div>
+          <div class="tab" data-tab="param">规格参数</div>
+          <div class="tab" data-tab="service">服务保障</div>
+        </div>
+        <div class="card-pad" id="tabBody"></div>
+      </div>
+    </div>
+    <aside>
+      <div class="card card-pad">
+        <div class="block-title">🧠 同类商品推荐</div>
+        <div id="similarBox"></div>
+      </div>
+      <div class="card card-pad mt16">
+        <div class="block-title">✨ 猜你还需要</div>
+        <div id="crossBox"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+<div id="mt-root"></div>
+<script>AIECP.UI.tail();</script>
+<script src="assets/js/detail.js"></script>
+</body>
+</html>

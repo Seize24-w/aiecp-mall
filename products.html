@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>商品分类与列表 · 智选云 AI</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/data.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ai.js"></script>
+<script src="assets/js/ui.js"></script>
+</head>
+<body>
+
+<div id="header-root"></div>
+<script>AIECP.UI.renderHeader('products');</script>
+
+<div class="container">
+  <div id="crumbBox" class="mt8"></div>
+
+  <!-- ============ AI 选品位（关键词/场景检索时展示） ============ -->
+  <div class="ai-panel mb16 hide" id="aiRecPanel">
+    <div class="ai-panel-head">
+      <div class="aph-icon">✨</div>
+      <div>
+        <h3>智能选品 · 你可能还想要</h3>
+        <div class="aph-sub" id="aiRecSub">基于画像与场景上下文的多路召回结果</div>
+      </div>
+      <div class="aph-right" id="aiRecTrace"></div>
+    </div>
+    <div class="ai-panel-body">
+      <div class="product-grid cols-5" id="aiRecGrid"></div>
+    </div>
+  </div>
+
+  <div class="list-layout">
+    <!-- ==================== 品类树侧栏 ==================== -->
+    <aside class="cat-panel">
+      <div class="cat-panel-title">商品品类（由 JSON 定义生成）</div>
+      <div id="catTree"></div>
+      <div class="cat-panel-title" style="border-top:1px solid var(--line-2);margin-top:8px;padding-top:14px">已选条件</div>
+      <div style="padding:0 16px 12px">
+        <div class="row gap4 wrap" id="chosenBox"></div>
+        <button class="btn btn-sm btn-block mt8" onclick="AIECP.Pages.list.resetAll()">清空全部条件</button>
+      </div>
+    </aside>
+
+    <!-- ==================== 主列表区 ==================== -->
+    <div>
+      <div class="filter-bar" id="filterBar"></div>
+
+      <div class="sort-bar">
+        <span class="sb-total" id="totalText"></span>
+        <span class="sort-item" data-sort="default">综合</span>
+        <span class="sort-item" data-sort="sales">销量</span>
+        <span class="sort-item" data-sort="priceAsc">价格 ↑</span>
+        <span class="sort-item" data-sort="priceDesc">价格 ↓</span>
+        <span class="sort-item" data-sort="new">新品</span>
+        <span class="sort-item" data-sort="rating">评分</span>
+        <label class="row center gap4 small text-2" style="margin-left:8px;cursor:pointer">
+          <input type="checkbox" id="inStockOnly"> 仅看有货
+        </label>
+      </div>
+
+      <div class="product-grid mt16" id="productGrid"></div>
+      <div class="pager" id="pager"></div>
+    </div>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+<div id="mt-root"></div>
+<script>AIECP.UI.tail();</script>
+<script src="assets/js/list.js"></script>
+</body>
+</html>

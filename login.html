@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>登录 / 注册 · 智选云 AI</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/data.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ai.js"></script>
+<script src="assets/js/ui.js"></script>
+</head>
+<body>
+
+<div id="header-root"></div>
+<script>AIECP.UI.renderHeader('');</script>
+
+<div class="container">
+  <div style="max-width:420px;margin:48px auto">
+    <div class="card card-pad">
+      <div class="row center gap12 mb16">
+        <span class="logo-mark">智选</span>
+        <div><b style="font-size:17px">智选云 AI</b><div class="small text-3">AI-ECP · 智能电商在线售货系统</div></div>
+      </div>
+
+      <div class="tabs mb16">
+        <div class="tab active" data-t="login">登录</div>
+        <div class="tab" data-t="reg">注册</div>
+      </div>
+
+      <div id="paneLogin">
+        <div class="field"><label>手机号</label><input id="lgMobile" value="13860216688" placeholder="请输入手机号"></div>
+        <div class="field"><label>密码</label><input id="lgPwd" type="password" value="demo1234" placeholder="演示环境任意密码均可登录"></div>
+        <button class="btn btn-primary btn-block btn-lg" onclick="AIECP.Pages.login.doLogin()">登录</button>
+        <div class="row between center mt12 small text-3">
+          <label class="row center gap4"><input type="checkbox" checked> 记住我</label>
+          <span>演示环境，无需真实账号</span>
+        </div>
+      </div>
+
+      <div id="paneReg" class="hide">
+        <div class="field"><label>昵称</label><input id="rgName" placeholder="给自己起个名字"></div>
+        <div class="field"><label>手机号</label><input id="rgMobile" placeholder="请输入手机号"></div>
+        <div class="field"><label>验证码</label><input id="rgCode" placeholder="演示环境任意验证码"></div>
+        <button class="btn btn-primary btn-block btn-lg" onclick="AIECP.Pages.login.doReg()">注册并登录</button>
+      </div>
+
+      <div class="notice-bar mt16" style="margin-top:16px">
+        <span class="nb-label">🔒 合规</span>
+        <span class="small">个人信息采集遵循最小必要原则；手机号、地址等字段在日志中脱敏（NFR-11）。</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+<div id="mt-root"></div>
+<script>AIECP.UI.tail();</script>
+<script src="assets/js/login.js"></script>
+</body>
+</html>

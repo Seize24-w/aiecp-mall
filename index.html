@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>智选云 AI 电商在线售货系统 · AI-ECP</title>
+<meta name="description" content="智选云 AI 电商在线售货系统：JSON 品类自定义 + 智能客服 / 智能选品 / 智能组货三项 AI 能力内建。">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/data.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ai.js"></script>
+<script src="assets/js/ui.js"></script>
+</head>
+<body>
+
+<div id="header-root"></div>
+<script>AIECP.UI.renderHeader('home');</script>
+
+<div class="container">
+
+  <!-- ======================= Hero ======================= -->
+  <section class="hero">
+    <div class="hero-main">
+      <span class="hero-badge">✦ AI 能力中台 · 智能客服 / 智能选品 / 智能组货</span>
+      <h1 class="hero-title">会思考的电商<br>让每一次选购更省心</h1>
+      <p class="hero-desc">品类结构由商家通过 JSON 自定义，5 分钟完成导入与发布；三项 AI 能力内建为能力中台，
+        共享大模型网关、向量检索、提示词管理与安全护栏，异常时自动降级，绝不阻断下单主流程。</p>
+      <div class="hero-actions">
+        <a class="btn btn-lg" href="products.html">开始逛逛</a>
+        <a class="btn btn-lg ghost-light" href="category-import.html">体验 JSON 品类导入</a>
+      </div>
+    </div>
+    <div class="hero-side" id="banners"></div>
+  </section>
+
+  <div class="notice-bar">
+    <span class="nb-label">✦ AI 运行态</span>
+    <span id="aiStatusText">正在加载 AI 能力状态…</span>
+    <span style="margin-left:auto" class="small text-3" id="profileText"></span>
+  </div>
+
+  <!-- =================== AI 智能选品推荐位 =================== -->
+  <section class="section" id="selection">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">✨ 智能选品 · 为你推荐</h2>
+        <div class="section-sub" id="selectionSub">多路召回 + 精排打分 + 多样性重排</div>
+      </div>
+      <div class="row gap8 center">
+        <button class="btn btn-sm" onclick="AIECP.Pages.home.refreshSelection()">换一批</button>
+        <a class="link-more" href="products.html?scene=ai">查看全部 →</a>
+      </div>
+    </div>
+    <div class="product-grid" id="selectionGrid"></div>
+  </section>
+
+  <!-- ======================= 品类导航 ======================= -->
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">🗂️ 按品类浏览</h2>
+        <div class="section-sub">品类树与筛选项均由 JSON 属性 Schema 动态生成（FR-01 / FR-10）</div>
+      </div>
+    </div>
+    <div class="product-grid cols-5" id="catGrid"></div>
+  </section>
+
+  <!-- ======================= AI 能力说明 ======================= -->
+  <section class="section" id="ai">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">🧠 三项 AI 能力 · 内建为能力中台</h2>
+        <div class="section-sub">共享大模型网关、向量检索、提示词管理与安全护栏；异常自动降级（NFR-06 / NFR-07）</div>
+      </div>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-feature">
+        <div class="af-icon">💬</div>
+        <h4>智能客服</h4>
+        <p>意图分流：知识咨询走 RAG 检索增强生成，业务事实走受控工具调用；答复经安全护栏过滤后流式返回，
+           置信度不足时携带会话摘要转接人工。</p>
+        <div class="af-meta">FR-13 ~ FR-16 · BR-13 · BR-14 · NFR-03</div>
+        <div class="mt12"><button class="btn btn-sm btn-ai" onclick="AIECP.UI._aiOpen()">立即咨询小智</button></div>
+      </div>
+      <div class="ai-feature">
+        <div class="af-icon">🎯</div>
+        <h4>智能选品</h4>
+        <p>画像构建 → 多路并行召回（协同过滤 / 向量语义 / 热门新品 / 画像偏好 / 场景关联）→ 精排打分 →
+           业务规则过滤 → 多样性重排 → 冷启动兜底；行为埋点回流形成自增强闭环。</p>
+        <div class="af-meta">FR-17 ~ FR-20 · BR-09 · BR-10</div>
+        <div class="mt12"><a class="btn btn-sm" href="#selection">看我的推荐</a></div>
+      </div>
+      <div class="ai-feature">
+        <div class="af-icon">🧩</div>
+        <h4>智能组货</h4>
+        <p>大模型只负责生成搭配理由，候选商品的库存、履约、价格与毛利全部由业务服务计算校验；
+           四维同时成立才输出，否则降级为单品推荐。</p>
+        <div class="af-meta">FR-21 ~ FR-23 · BR-11 · BR-12</div>
+        <div class="mt12"><a class="btn btn-sm" href="#bundle">看组货方案</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== AI 智能组货场景位 =================== -->
+  <section class="section" id="bundle">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">🧩 智能组货 · 成套搭配</h2>
+        <div class="section-sub">库存 / 履约 / 价格 / 毛利四维校验通过后才输出方案，支持一键整单加购</div>
+      </div>
+      <button class="btn btn-sm" onclick="AIECP.Pages.home.switchScene()">换一个场景</button>
+    </div>
+    <div class="ai-panel">
+      <div class="ai-panel-head">
+        <div class="aph-icon">🧩</div>
+        <div>
+          <h3 id="bundleSceneName">正在识别搭配场景…</h3>
+          <div class="aph-sub" id="bundleSceneSub">场景识别 → 配套召回 → 可行性校验 → 组合定价</div>
+        </div>
+        <div class="aph-right" id="bundleTrace"></div>
+      </div>
+      <div class="ai-panel-body" id="bundleBody"></div>
+    </div>
+  </section>
+
+  <!-- ======================= 人工运营位 ======================= -->
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">🔥 热销榜</h2>
+        <div class="section-sub">人工运营位（与 AI 推荐位做 A/B 对照，FR-20）</div>
+      </div>
+      <a class="link-more" href="products.html?sort=sales">查看更多 →</a>
+    </div>
+    <div class="product-grid" id="hotGrid"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">🆕 新品上架</h2>
+        <div class="section-sub">新增品类无需发版，导入 JSON 即可上架</div>
+      </div>
+      <a class="link-more" href="products.html?sort=new">查看更多 →</a>
+    </div>
+    <div class="product-grid" id="newGrid"></div>
+  </section>
+
+</div>
+
+<div id="footer-root"></div>
+<div id="mt-root"></div>
+<script>AIECP.UI.tail();</script>
+<script src="assets/js/home.js"></script>
+</body>
+</html>
