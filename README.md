@@ -3,6 +3,9 @@
 > 依据《需求分析报告》(AIECP-SRS-001) 与《系统设计报告》(AIECP-SDD-001) 实现的**纯静态电商在线销售系统**。
 > 无后端、无构建、无外部 CDN，双击 `index.html` 即可离线运行。
 
+🌐 **在线体验：<https://seize24-w.github.io/aiecp-mall/>**
+📦 **仓库：<https://github.com/Seize24-w/aiecp-mall>**
+
 ---
 
 ## 一、快速开始
